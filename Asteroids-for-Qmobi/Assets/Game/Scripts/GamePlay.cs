@@ -18,7 +18,7 @@ public class GamePlay : MonoBehaviour
     {
         asteroid.SetActive(false);
         mainCam = Camera.main;
-        _startLevelAsteroidNum = 3;
+        _startLevelAsteroidNum = 2;
         CreateAsteroids(_startLevelAsteroidNum);
     }
 
