@@ -262,7 +262,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &144763713
 BoxCollider:
@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroids
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.12
@@ -458,6 +462,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0565
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 3}
@@ -611,7 +627,7 @@ GameObject:
   - component: {fileID: 1061224394}
   - component: {fileID: 1061224396}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
