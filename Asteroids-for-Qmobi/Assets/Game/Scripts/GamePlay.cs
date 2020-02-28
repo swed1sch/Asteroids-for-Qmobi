@@ -18,7 +18,7 @@ public class GamePlay : MonoBehaviour
     {
         asteroid.SetActive(false);
         mainCam = Camera.main;
-        _startLevelAsteroidNum = 2;
+        _startLevelAsteroidNum = 3;
         CreateAsteroids(_startLevelAsteroidNum);
     }
 
@@ -30,7 +30,7 @@ public class GamePlay : MonoBehaviour
         if (asteroidLife <= 0)
         {
             asteroidLife = 6;
-            CreateAsteroids(1);
+            CreateAsteroids(2);
         }
 
         float sceneWidth = mainCam.orthographicSize * 2 * mainCam.aspect;
