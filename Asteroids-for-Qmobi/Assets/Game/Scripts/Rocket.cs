@@ -11,7 +11,7 @@ public class Rocket : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         mainCam = Camera.main;
         rb = GetComponent<Rigidbody>();
@@ -43,12 +43,12 @@ public class Rocket : MonoBehaviour
     private void CheckPosition()
     {
         float sceneWidth = mainCam.orthographicSize * 2 * mainCam.aspect;
-        float sceneHeight = mainCam.orthographicSize * 2;
+        float sceneHeight = mainCam.orthographicSize*2;
 
         float sceneRightEdge = sceneWidth / 2;
-        float sceneLeftEdge = sceneWidth *-1;
-        float sceneTopEdge = sceneWidth / 2;
-        float sceneBottomEdge = sceneWidth *-1;
+        float sceneLeftEdge = sceneRightEdge * -1;
+        float sceneTopEdge = sceneHeight/2;
+        float sceneBottomEdge = sceneHeight * -1;
 
         if (transform.position.x > sceneRightEdge)
         {
@@ -68,13 +68,19 @@ public class Rocket : MonoBehaviour
         }
 
     }
-    
+    public void ResetRocket()
+    {
+        transform.position = new Vector2(0f, 0f);
+        transform.eulerAngles = new Vector3(0, 180f, 0);
+        rb.velocity = new Vector3(0f, 0f, 0f);
+        rb.angularVelocity = new Vector3(0f, 0f, 0f);
+    }
     void Shoot()
     {
-        GameObject bulletClone = Instantiate(bullet, new Vector2(bullet.transform.position.x, bullet.transform.position.y), transform.rotation);
-        bulletClone.SetActive(true);
-        bulletClone.GetComponent<Bullet>().DeleteBullet();
-        bulletClone.GetComponent<Rigidbody>().AddForce(transform.up * 350);
+        GameObject BulletClone = Instantiate(bullet, new Vector2(bullet.transform.position.x, bullet.transform.position.y), transform.rotation);
+        BulletClone.SetActive(true);
+        BulletClone.GetComponent<Bullet>().DeleteBullet();
+        BulletClone.GetComponent<Rigidbody>().AddForce(transform.up * 350);
     }
 
 }

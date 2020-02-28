@@ -46,7 +46,7 @@ public class Asteroid : MonoBehaviour
 
     public void SetGeneration(int generation)
     {
-        this._generation = generation;
+        _generation = generation;
     }
     // Update is called once per frame
     void Update()
@@ -56,27 +56,33 @@ public class Asteroid : MonoBehaviour
         float dynamicMaxSpeed = 3f;
         rg.velocity = new Vector2(Mathf.Clamp(rg.velocity.x, -dynamicMaxSpeed, dynamicMaxSpeed), Mathf.Clamp(rg.velocity.y, -dynamicMaxSpeed, dynamicMaxSpeed));
     }
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.name == "Bullet(Clone)")
         {
             if (_generation < 3)
+            {
                 CreateSmallAsteroids(2);
+            }               
             Destroy();
         }
         if (collision.collider.name == "Rocket")
+        {
             gamePlay.RocketFail();
+        }          
     }
 
     void CreateSmallAsteroids(int asteroidsNum)
     {
-        int newGeneration = this._generation + 1;
+        int newGeneration = _generation + 1;
         for(int i = 1; i < asteroidsNum; i++)
         {
             float scaleSize = 0.5f;
             GameObject AsteroidClone = Instantiate(rock, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
-            AsteroidClone.transform.localScale = new Vector3(AsteroidClone.transform.localScale.x * scaleSize, AsteroidClone.transform.localScale.y * scaleSize, 0f);
+            AsteroidClone.transform.localScale =
+                new Vector3(AsteroidClone.transform.localScale.x * scaleSize, AsteroidClone.transform.localScale.y * scaleSize, AsteroidClone.transform.localScale.z * scaleSize );
             AsteroidClone.GetComponent<Asteroid>().SetGeneration(newGeneration);
+            AsteroidClone.SetActive(true);  
         }
     }
     
@@ -125,7 +131,7 @@ public class Asteroid : MonoBehaviour
             }
             if (rock.transform.position.x < sceneLeftEdge - rockOffset)
             {
-                rock.transform.position = new Vector2(sceneLeftEdge + rockOffset, rock.transform.position.y);
+                rock.transform.position = new Vector2(sceneRightEdge + rockOffset, rock.transform.position.y);
             }
             if (rock.transform.position.y > sceneTopEdge + rockOffset)
             {
@@ -133,7 +139,7 @@ public class Asteroid : MonoBehaviour
             }
             if (rock.transform.position.y < sceneBottomEdge - rockOffset)
             {
-                rock.transform.position = new Vector2(rock.transform.position.x, sceneBottomEdge + rockOffset);
+                rock.transform.position = new Vector2(rock.transform.position.x, sceneTopEdge + rockOffset);
             }
         }        
     }

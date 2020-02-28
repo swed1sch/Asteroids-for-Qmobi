@@ -25,7 +25,7 @@ public class GamePlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RenderSettings.skybox.SetFloat("_Rotation", Time.deltaTime * 0.8f);
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * 0.8f);
 
         if (asteroidLife <= 0)
         {
@@ -36,9 +36,10 @@ public class GamePlay : MonoBehaviour
         float sceneWidth = mainCam.orthographicSize * 2 * mainCam.aspect;
         float sceneHeight = mainCam.orthographicSize * 2;
         float sceneRightEdge = sceneWidth / 2;
-        float sceneLeftEdge = sceneWidth * -1;
-        float sceneTopEdge = sceneWidth / 2;
-        float sceneBottomEdge = sceneWidth * -1;
+        float sceneLeftEdge = sceneRightEdge * -1;
+        float sceneTopEdge = sceneHeight/ 2;
+        float sceneBottomEdge = sceneTopEdge * -1;
+
         _allAsteroidsOffScreen = true;
     }
 
