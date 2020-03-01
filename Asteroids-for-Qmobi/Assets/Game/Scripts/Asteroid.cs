@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Asteroid : MonoBehaviour
 {
@@ -13,13 +14,12 @@ public class Asteroid : MonoBehaviour
     private Camera mainCam;
     private float maxSpeed;
     private int _generation;
-
-
+  
+    
     // Start is called before the first frame update
     void Start()
     {
-        mainCam = Camera.main;
-
+        mainCam = Camera.main;        
         maxRotation = 25f;
         rotationX = Random.Range(-maxRotation, maxRotation);
         rotationY = Random.Range(-maxRotation, maxRotation);
@@ -56,8 +56,11 @@ public class Asteroid : MonoBehaviour
         float dynamicMaxSpeed = 3f;
         rg.velocity = new Vector2(Mathf.Clamp(rg.velocity.x, -dynamicMaxSpeed, dynamicMaxSpeed), Mathf.Clamp(rg.velocity.y, -dynamicMaxSpeed, dynamicMaxSpeed));
     }
+
+    
     void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.collider.name == "Bullet(Clone)")
         {
             if (_generation < 3)
@@ -68,8 +71,15 @@ public class Asteroid : MonoBehaviour
         }
         if (collision.collider.name == "Rocket")
         {
-            gamePlay.RocketFail();
-        }          
+            Life.lifeValue--;
+            if (Life.lifeValue == 0)
+            {
+                gamePlay.RocketFail();
+                
+            }
+                
+        }
+                  
     }
 
     void CreateSmallAsteroids(int asteroidsNum)
@@ -82,6 +92,7 @@ public class Asteroid : MonoBehaviour
             AsteroidClone.transform.localScale =
                 new Vector3(AsteroidClone.transform.localScale.x * scaleSize, AsteroidClone.transform.localScale.y * scaleSize, AsteroidClone.transform.localScale.z * scaleSize );
             AsteroidClone.GetComponent<Asteroid>().SetGeneration(newGeneration);
+            
             AsteroidClone.SetActive(true);  
         }
     }

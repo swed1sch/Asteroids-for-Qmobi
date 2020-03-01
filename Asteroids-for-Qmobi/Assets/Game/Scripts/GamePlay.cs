@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GamePlay : MonoBehaviour
@@ -53,12 +51,13 @@ public class GamePlay : MonoBehaviour
             AsteroidClone.SetActive(true);
         }
     }
-
+    
     public void RocketFail()
     {
         Cursor.visible = true;
         print("GAME OVER");
         SceneManager.LoadScene(1);
+        Life.lifeValue = 3;
     }
 
     public void asteroidDestroyed()
