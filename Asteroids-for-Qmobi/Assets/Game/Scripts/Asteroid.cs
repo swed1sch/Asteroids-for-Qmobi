@@ -68,10 +68,11 @@ public class Asteroid : MonoBehaviour
                 CreateSmallAsteroids(2);
             }               
             Destroy();
+            ScoreScript._score += 10;
         }
         if (collision.collider.name == "Rocket")
         {
-            Life.lifeValue--;
+            Life.lifeValue--;            
             if (Life.lifeValue == 0)
             {
                 gamePlay.RocketFail();

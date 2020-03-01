@@ -15,6 +15,8 @@ public class GamePlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Life.lifeValue = 3;
+        ScoreScript._score = 0;
         asteroid.SetActive(false);
         mainCam = Camera.main;
         _startLevelAsteroidNum = 3;
@@ -57,7 +59,7 @@ public class GamePlay : MonoBehaviour
         Cursor.visible = true;
         print("GAME OVER");
         SceneManager.LoadScene(1);
-        Life.lifeValue = 3;
+        
     }
 
     public void asteroidDestroyed()
