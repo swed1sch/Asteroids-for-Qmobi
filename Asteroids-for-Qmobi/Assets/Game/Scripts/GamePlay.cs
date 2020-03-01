@@ -57,7 +57,6 @@ public class GamePlay : MonoBehaviour
     public void RocketFail()
     {
         Cursor.visible = true;
-        print("GAME OVER");
         SceneManager.LoadScene(1);
         
     }

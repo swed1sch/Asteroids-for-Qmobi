@@ -14,7 +14,7 @@ public class Asteroid : MonoBehaviour
     private Camera mainCam;
     private float maxSpeed;
     private int _generation;
-  
+    public GameObject explosion;
     
     // Start is called before the first frame update
     void Start()
@@ -65,13 +65,15 @@ public class Asteroid : MonoBehaviour
         {
             if (_generation < 3)
             {
-                CreateSmallAsteroids(2);
-            }               
+                CreateSmallAsteroids(3);
+            }
+            Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy();
             ScoreScript._score += 10;
         }
         if (collision.collider.name == "Rocket")
         {
+            
             Life.lifeValue--;            
             if (Life.lifeValue == 0)
             {
